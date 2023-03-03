@@ -2,7 +2,7 @@ import numpy as np
 
 import cv2 as cv
 
-cap = cv.VideoCapture('vtest.avi')
+cap = cv.VideoCapture('testvideo.avi')
 
 while cap.isOpened():
 
