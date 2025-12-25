@@ -37,7 +37,7 @@ CREATE TABLE course_sections (
     status ENUM('OPEN', 'CLOSED', 'GRADING') DEFAULT 'OPEN',
     FOREIGN KEY (course_id) REFERENCES courses(course_id),
     FOREIGN KEY (teacher_id) REFERENCES teachers(teacher_id),
-    CHECK (residue >= 0) #数据库约束防止名额为负
+    CHECK (residue >= 0) 
 );
 
 CREATE TABLE enrollments (
@@ -45,7 +45,7 @@ CREATE TABLE enrollments (
     section_id INT NOT NULL,
     enroll_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     score DECIMAL(5,2) DEFAULT NULL COMMENT '成绩',
-    PRIMARY KEY (student_id, section_id), #防止重复选课
+    PRIMARY KEY (student_id, section_id), 
     FOREIGN KEY (student_id) REFERENCES students(student_id),
     FOREIGN KEY (section_id) REFERENCES course_sections(section_id)
 );
@@ -59,4 +59,5 @@ CREATE TABLE grade_audit_log (
     operator VARCHAR(50),
     operate_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
 
