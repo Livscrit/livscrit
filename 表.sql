@@ -1,10 +1,8 @@
-# 院系表
 CREATE TABLE departments (
     dept_id CHAR(5) PRIMARY KEY COMMENT '院系编号',
     dept_name VARCHAR(50) NOT NULL UNIQUE COMMENT '院系名称'
 );
 
-# 教师表
 CREATE TABLE teachers (
     teacher_id CHAR(10) PRIMARY KEY COMMENT '工号',
     name VARCHAR(20) NOT NULL COMMENT '姓名',
@@ -13,14 +11,12 @@ CREATE TABLE teachers (
     FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
 );
 
-# 课程表
 CREATE TABLE courses (
     course_id CHAR(8) PRIMARY KEY COMMENT '课程代码',
     course_name VARCHAR(50) NOT NULL COMMENT '课程名称',
     credits DECIMAL(3,1) NOT NULL COMMENT '学分'
 );
 
-# 学生表
 CREATE TABLE students (
     student_id CHAR(10) PRIMARY KEY COMMENT '学号',
     name VARCHAR(20) NOT NULL COMMENT '姓名',
@@ -31,7 +27,6 @@ CREATE TABLE students (
     FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
 );
 
-# 开课班次表
 CREATE TABLE course_sections (
     section_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '班次ID',
     course_id CHAR(8) NOT NULL,
@@ -45,7 +40,6 @@ CREATE TABLE course_sections (
     CHECK (residue >= 0) #数据库约束防止名额为负
 );
 
-# 选课记录表
 CREATE TABLE enrollments (
     student_id CHAR(10) NOT NULL,
     section_id INT NOT NULL,
@@ -56,7 +50,6 @@ CREATE TABLE enrollments (
     FOREIGN KEY (section_id) REFERENCES course_sections(section_id)
 );
 
-# 审计日志表
 CREATE TABLE grade_audit_log (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     student_id CHAR(10) NOT NULL,
@@ -66,3 +59,4 @@ CREATE TABLE grade_audit_log (
     operator VARCHAR(50),
     operate_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
