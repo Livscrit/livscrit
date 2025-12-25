@@ -5,7 +5,7 @@ CREATE TABLE departments (
 
 CREATE TABLE teachers (
     teacher_id CHAR(10) PRIMARY KEY,
-    name VARCHAR(20) NOT NULL COMMENT,
+    name VARCHAR(20) NOT NULL,
     dept_id CHAR(5) NOT NULL,
     title VARCHAR(20),
     FOREIGN KEY (dept_id) REFERENCES departments(dept_id)
@@ -59,6 +59,7 @@ CREATE TABLE grade_audit_log (
     operator VARCHAR(50),
     operate_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
 
 
 
