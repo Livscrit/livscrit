@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS uems_db;
-CREATE DATABASE uems_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE uems_db;
-
 # 院系表
 CREATE TABLE departments (
     dept_id CHAR(5) PRIMARY KEY COMMENT '院系编号',
@@ -70,18 +66,3 @@ CREATE TABLE grade_audit_log (
     operator VARCHAR(50),
     operate_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE VIEW view_my_transcript AS
-SELECT
-    s.student_id,
-    s.name AS student_name,
-    c.course_name,
-    cs.semester,
-    t.name AS teacher_name,
-    e.score,
-    c.credits
-FROM students s
-JOIN enrollments e ON s.student_id = e.student_id
-JOIN course_sections cs ON e.section_id = cs.section_id
-JOIN courses c ON cs.course_id = c.course_id
-JOIN teachers t ON cs.teacher_id = t.teacher_id;
